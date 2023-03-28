@@ -1,11 +1,37 @@
-tokenData = {
-  hash: "0x4a91fae04c88851eb1ec7a3f7347867d6a71d2c384354f5a52f9e4262b440f2f",
-  tokenId: "159000091",
-};
+// tokenData = {
+//   hash: "0x4a91fae04c88851eb1ec7a3f7347867d6a71d2c384354f5a52f9e4262b440f2f",
+//   tokenId: "159000091",
+// };
 
-let hash = tokenData.hash;
+function genTokenData(projectNum) {
+  let data = {};
+  let hash = "0x";
+  for (var i = 0; i < 64; i++) {
+    hash += Math.floor(Math.random() * 16).toString(16);
+  }
+  data.hash = hash;
+  data.tokenId = (projectNum * 1000000 + Math.floor(Math.random() * 1000)).toString();
+  return data;
+}
+let tokenData = genTokenData(123);
+
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+let hash = params.hash;
+if (hash) {
+  tokenData = {};
+  tokenData.hash = hash;
+} 
+
+console.log(tokenData);
+console.log('[ArtTest.js]:hash ' + tokenData.hash);
+
+// let hash = tokenData.hash;
+
+tokenData.hash = "0x9d38fe8a3ae264add5627d87d7d12d6ac7817ac31c2f640698e3f7b6e71e7bc9";
 
 var TDIM = Math.min(window.innerWidth, window.innerHeight);
+TDIM = 15000;
 var DIM = 1000;
 var fDIM = TDIM/DIM;
 var linha,
@@ -295,6 +321,9 @@ function draw() {
       chuva();
     }
   }
+
+  console.log('[ArtTest.js]:ready');
+
   noLoop();
 }
 
