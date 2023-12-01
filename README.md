@@ -11,3 +11,32 @@
 [Monica Rizzolli: conheça a artista programadora que contribui na mudança de paradigmas dos NFTs no mundo da arte](https://vogue.globo.com/lifestyle/cultura/noticia/2021/12/monica-rizzolli-conheca-artista-programadora-que-contribui-na-mudanca-de-paradigmas-dos-nfts-no-mundo-da-arte.html)
 
 [Mestres do algoritmo: computadores vão tomar lugar de artistas?](https://veja.abril.com.br/cultura/mestres-do-algoritmo-computadores-vao-tomar-lugar-de-artistas/)
+
+## How to generate the images
+
+This is a generative work, and it pseudo-randomness is originated by a seed. This seed is a string of 64 hexadecimal characters, referred in the code as `hash`. The same hash will always generate the same image. In order to generate an image, just follow the steps below. Please notice these instructions are very generic, and you may need to adapt them to your specific environment. The author of this work opted to not provide instructions using specific tools, because tools are not universal and may become obsolete in the future.
+
+1. Install, setup and run a web server. You may use any web server, as you will only need to serve simple static pages;
+2. Clone this repository to your web server's root directory (or any other directory you may want to use):
+```
+git clone https://github.com/Morfologia-digital/fragmentsOfAnInfiniteField.git
+```
+3. You are already able to access the images in your browser. Simply access it using the URL of your web server. For example, if you are running the web server locally, you may access the images using the URL `http://localhost/fragmentsOfAnInfiniteField/`, However, the images will be generated with the default hash. 
+
+4. If you want to generate images with a specific hash, you will need to edit the `sketh.js` file. Simply change the value of the variable `hash` to the desired hash. This code is located at the very top of the file (lines 1 to 4):
+```
+tokenData = {
+  hash: "0x0a17a93f55859d66b31e0d78685737ef365fa3edf49fa887090059a157e2d9c8",
+  tokenId: "159000091",
+};
+```
+
+5. The code currently is fulfilling the web browser inner dimensions. If you want to generate images with a specific size, you will need to edit the `sketh.js` file. Simply change the value of the `TDIM` variable to the desired values. This variables is also located at the very top of the file (line 8):
+```
+var TDIM = Math.min(window.innerWidth, window.innerHeight);
+```
+Replace `Math.min(window.innerWidth, window.innerHeight)` with the desired values. For example, to generate a 1000x1000 image, you may use:
+```
+var TDIM = 1000;
+```
+Please note that once this work is drawn using a HTML canvas, the image will be rasterized. Therefore, it is not possible to generate images with infinite resolution. The maximum resolution is limited by the size of the canvas. Also, the maximum since of the canvas is limited by your web browser. Please check your web browser documentation for more information.
